@@ -1,0 +1,68 @@
+group 'com.example.flutter_billpocket'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    ext.kotlin_version = '1.7.10'
+    repositories {
+        google()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.2.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-parcelize'
+
+rootProject.allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url 'https://billpocket.jfrog.io/artifactory/billpocket-public-mobile/'
+        }
+
+        //Add this below <plugin_name> is whatever your plugin is called eg. url_launcher
+        flatDir {
+            dirs project(':flutter_billpocket').file('libs')
+        }
+    }
+}
+
+android {
+    compileSdkVersion 31
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        minSdkVersion 23
+    }
+
+    dependencies {
+        implementation (name: 'minervacore-gsm-1.0.1', ext: 'aar')
+        implementation 'com.billpocket:sdk-android:2.7.7.1-demo'
+        implementation 'com.google.code.gson:gson:2.10.1'
+    }
+}
