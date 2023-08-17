@@ -6,6 +6,19 @@ Introducing Billpocket: Simplifying Mobile Card Payments and Terminal Integratio
 
 ## Getting Started
 
+### Android
+
+You need to add the following permissions in android to request bluetooth access
+
+```android
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+```
+
+### Dart
+
 Set your Billpocket token and development environment.
 
 ```dart
