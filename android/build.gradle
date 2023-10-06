@@ -37,6 +37,9 @@ rootProject.allprojects {
         flatDir {
             dirs project(':flutter_billpocket').file('libs')
         }
+        maven{
+            url 'https://gitlab.com/api/v4/projects/4128550/packages/maven'
+        }
     }
 }
 
@@ -62,7 +65,7 @@ android {
 
     dependencies {
         implementation (name: 'minervacore-gsm-1.0.1', ext: 'aar')
-        implementation 'com.billpocket:sdk-android:2.7.7.1-demo'
+        implementation 'com.billpocket:sdk-android:2.7.8.2'
         implementation 'com.google.code.gson:gson:2.10.1'
     }
 }
