@@ -107,7 +107,7 @@ class _MyAppState extends State<MyApp> {
                   Expanded(
                     child: ElevatedButton(
                         onPressed: () async {
-                          Map<Permission, PermissionStatus> statuses = await [
+                          await [
                             Permission.bluetoothScan,
                             Permission.bluetoothAdvertise,
                             Permission.bluetoothConnect
@@ -200,12 +200,12 @@ class _MyAppState extends State<MyApp> {
                 itemBuilder: (context, pos) {
                   if (pos == 0) {
                     return Row(children: [
-                      Icon(Icons.arrow_forward_ios_rounded, size: 15, color: Colors.lightGreen,),
+                      const Icon(Icons.arrow_forward_ios_rounded, size: 15, color: Colors.lightGreen,),
                       const SizedBox(width: 10,),
-                      Expanded(child: Text(log[pos], style: TextStyle(color: Colors.lightGreen, fontWeight: FontWeight.bold),))
+                      Expanded(child: Text(log[pos], style: const TextStyle(color: Colors.lightGreen, fontWeight: FontWeight.bold),))
                     ],);
                   }
-                  return Text(log[pos], style: TextStyle(color: Colors.grey),);
+                  return Text(log[pos], style: const TextStyle(color: Colors.grey),);
                 },
                 itemCount: log.length,
                 shrinkWrap: true, separatorBuilder: (BuildContext context, int index) {
