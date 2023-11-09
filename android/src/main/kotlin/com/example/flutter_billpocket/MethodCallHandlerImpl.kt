@@ -71,6 +71,7 @@ class MethodCallHandlerImpl : MethodCallHandler {
             "connectReader" -> this.connectReader(call, result)
             "doTransaction" -> this.doTransaction(call, result)
             "continueWithMsi" -> this.continueWithMsi(call, result)
+            "logs" -> this.getLogs( call, result  )
             else -> result.notImplemented()
         }
     }
@@ -264,5 +265,9 @@ class MethodCallHandlerImpl : MethodCallHandler {
                 minAmount = minAmount.toBigDecimal()
             )
         )
+    }
+
+    private fun getLogs( call: MethodCall ,result: MethodChannel.Result ){
+        result.success( listenerTransaction.logs )
     }
 }

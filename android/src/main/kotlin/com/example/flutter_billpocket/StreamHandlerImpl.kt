@@ -96,6 +96,7 @@ class StreamHandlerImpl : StreamHandler {
 
     fun resultStartTransactionError(message: String) {
         eventSink?.error("FlutterBillpocketException", message, null)
+        
     }
 
 

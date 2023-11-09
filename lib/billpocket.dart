@@ -58,4 +58,8 @@ class Billpocket {
         installments: installments,
         minAmount: minAmount);
   }
+
+  static Future<void> getLogs() async {
+    return await _billpocket.getLogs();
+  }
 }

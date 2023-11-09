@@ -1,4 +1,4 @@
-import 'dart:ffi';
+//import 'dart:ffi';
 
 import 'package:flutter_billpocket/reader.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
@@ -69,5 +69,9 @@ abstract class BillpocketPlatform extends PlatformInterface {
     required double minAmount,
   }) {
     throw UnimplementedError('continueWithMsi() has not been implemented.');
+  }
+
+  Future<void> getLogs() async {
+    throw UnimplementedError( 'getLogs() has not been implemented.' );
   }
 }
