@@ -12,7 +12,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Billpocket.config(
       isProduction: true,
-      token: '596ce9b236df3e944c243c9fd5fd20b6ae2079121b6c022531965945856243f0');
+      token: '{YOUR TOKEN}');
   runApp(const MyAppPage());
 }
 
