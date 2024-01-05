@@ -59,7 +59,7 @@ class Billpocket {
         minAmount: minAmount);
   }
 
-  static Future<void> getLogs() async {
+  static Future<String> getLogs() async {
     return await _billpocket.getLogs();
   }
 }

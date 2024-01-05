@@ -71,7 +71,7 @@ abstract class BillpocketPlatform extends PlatformInterface {
     throw UnimplementedError('continueWithMsi() has not been implemented.');
   }
 
-  Future<void> getLogs() async {
+  Future<String> getLogs() async {
     throw UnimplementedError( 'getLogs() has not been implemented.' );
   }
 }

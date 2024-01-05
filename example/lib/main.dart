@@ -12,7 +12,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Billpocket.config(
       isProduction: true,
-      token: '{YOUR TOKEN}');
+      token: '{YOUR_TOKEN}');
   runApp(const MyAppPage());
 }
 
@@ -55,6 +55,17 @@ class _MyAppState extends State<MyApp> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Billpocket'),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              final log = await Billpocket.getLogs();
+              if( context.mounted ){
+                _showLogs( context, log );
+              }
+            }, 
+            icon: const Text( 'Logs' )
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
@@ -216,6 +227,24 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<dynamic> _showLogs(BuildContext context, String log) {
+    return showDialog(
+      context: context, 
+      builder: (context) => AlertDialog(
+        content: Column(
+          children: [
+            const Text( 'LOGS' ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Text( log.isEmpty ? 'Sin logs' : log )
+              )
+            ),
+          ],
+        ),
+      )
     );
   }
 
