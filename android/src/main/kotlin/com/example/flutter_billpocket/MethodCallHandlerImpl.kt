@@ -36,6 +36,7 @@ class MethodCallHandlerImpl : MethodCallHandler {
 
     private lateinit var listenerTransaction: ListenerTransaction
 
+    var logs = ""
 
     fun setContext(context: Context) {
         applicationContext = context
@@ -71,6 +72,7 @@ class MethodCallHandlerImpl : MethodCallHandler {
             "connectReader" -> this.connectReader(call, result)
             "doTransaction" -> this.doTransaction(call, result)
             "continueWithMsi" -> this.continueWithMsi(call, result)
+            "logs" -> this.getLogs( call, result  )
             else -> result.notImplemented()
         }
     }
@@ -126,6 +128,11 @@ class MethodCallHandlerImpl : MethodCallHandler {
         try {
             BluetoothReaderList.getListBluetoothReaders(this.applicationContext,
                 object : EventListenerConnection {
+
+                    override fun onLogMessage( message :String ){
+                        addMessageToLogger( message )
+                    }
+
                     override fun onQposDisconnected(resultDisconnected: String) {
                         // Does not apply
                     }
@@ -204,6 +211,10 @@ class MethodCallHandlerImpl : MethodCallHandler {
                     }
                 }
 
+                override fun onLogMessage( message :String ){
+                    addMessageToLogger( message )
+                }
+
             })
     }
 
@@ -264,5 +275,15 @@ class MethodCallHandlerImpl : MethodCallHandler {
                 minAmount = minAmount.toBigDecimal()
             )
         )
+    }
+
+    private fun getLogs( call: MethodCall ,result: MethodChannel.Result ){
+        result.success( "${logs}\n${listenerTransaction.logs}" )
+    }
+
+    private fun addMessageToLogger(message: String) {
+        var msg = logs
+        msg = "$message\n------------\n$msg"
+        logs = msg
     }
 }

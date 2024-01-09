@@ -22,7 +22,7 @@ class ListenerTransaction(
     private val REQUEST_PIN = 0x1001
 
     private val uiThreadHandler = Handler(Looper.getMainLooper())
-
+    var logs = "";
 
     override fun getSignature(intent: Intent) {
         streamHandler.getSignature("Obteniendo firma")
@@ -127,5 +127,15 @@ class ListenerTransaction(
 
             else -> false
         }
+    }
+
+    override fun onLogEvenListener(log: String) {
+        addMessageToLogger("onLogEvenListener: $log")
+    }
+
+    private fun addMessageToLogger(message: String) {
+        var msg = logs
+        msg = "$message\n------------\n$msg"
+        logs = msg
     }
 }

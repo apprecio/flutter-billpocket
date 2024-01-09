@@ -55,6 +55,17 @@ class _MyAppState extends State<MyApp> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Billpocket'),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              final log = await Billpocket.getLogs();
+              if( context.mounted ){
+                _showLogs( context, log );
+              }
+            }, 
+            icon: const Text( 'Logs' )
+          )
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 15),
@@ -107,7 +118,7 @@ class _MyAppState extends State<MyApp> {
                   Expanded(
                     child: ElevatedButton(
                         onPressed: () async {
-                          Map<Permission, PermissionStatus> statuses = await [
+                          await [
                             Permission.bluetoothScan,
                             Permission.bluetoothAdvertise,
                             Permission.bluetoothConnect
@@ -200,12 +211,12 @@ class _MyAppState extends State<MyApp> {
                 itemBuilder: (context, pos) {
                   if (pos == 0) {
                     return Row(children: [
-                      Icon(Icons.arrow_forward_ios_rounded, size: 15, color: Colors.lightGreen,),
+                      const Icon(Icons.arrow_forward_ios_rounded, size: 15, color: Colors.lightGreen,),
                       const SizedBox(width: 10,),
-                      Expanded(child: Text(log[pos], style: TextStyle(color: Colors.lightGreen, fontWeight: FontWeight.bold),))
+                      Expanded(child: Text(log[pos], style: const TextStyle(color: Colors.lightGreen, fontWeight: FontWeight.bold),))
                     ],);
                   }
-                  return Text(log[pos], style: TextStyle(color: Colors.grey),);
+                  return Text(log[pos], style: const TextStyle(color: Colors.grey),);
                 },
                 itemCount: log.length,
                 shrinkWrap: true, separatorBuilder: (BuildContext context, int index) {
@@ -216,6 +227,24 @@ class _MyAppState extends State<MyApp> {
           ),
         ),
       ),
+    );
+  }
+
+  Future<dynamic> _showLogs(BuildContext context, String log) {
+    return showDialog(
+      context: context, 
+      builder: (context) => AlertDialog(
+        content: Column(
+          children: [
+            const Text( 'LOGS' ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Text( log.isEmpty ? 'Sin logs' : log )
+              )
+            ),
+          ],
+        ),
+      )
     );
   }
 

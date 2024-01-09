@@ -93,4 +93,14 @@ class MethodChannelBillpocket extends BillpocketPlatform {
       print(exception);
     }
   }
+
+  @override
+  Future<String> getLogs() async {
+    try {
+      return await methodChannel.invokeMethod('logs');
+    } on PlatformException catch (exception) {
+      print(exception);
+      return '';
+    }
+  }
 }
