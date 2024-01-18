@@ -179,4 +179,4 @@ Please file any issues, bugs, or feature requests in the [GitHub repo](https://g
 If you wish to contribute a change to this repo, please send a [pull request](https://github.com/apprecio/flutter-billpocket/pulls).
 
 ## Acknowledgments
-This package was originally created by [Abel Tarazona](https://github.com/AbelTarazona).
+This package was originally created by [Abel Tarazona](https://github.com/AbelTarazona) and [Jared González](https://github.com/JaredLevi23).
