@@ -6,6 +6,10 @@ Introducing Billpocket: Simplifying Mobile Card Payments and Terminal Integratio
 
 ## Getting Started
 
+### Request integration
+
+As this library is not officially associated with Billpocket, you must request integration using the following [link](https://www.billpocket.com/integraciones-billpocket) so that they can provide you with the SDK files.
+
 ### Android
 
 You need to add the following permissions in android to request bluetooth access
